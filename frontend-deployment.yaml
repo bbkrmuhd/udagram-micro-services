@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: udagram-frontend
+  name: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: udagram-frontend
+  template:
+    metadata:
+      labels:
+        app: udagram-frontend
+    spec:
+      containers:
+      - image: ams2000/udagram-frontend:v3
+        name: udagram-frontend  
+        ports:
+        - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: env-configmap
+          - secretRef:
+              name: env-secret
