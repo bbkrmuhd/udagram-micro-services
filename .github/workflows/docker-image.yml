@@ -1,0 +1,47 @@
+
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build_and_deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build -t udagram-frontend ./udagram-frontend
+    - name: Build the Docker image
+      run: docker build -t udagram-api-feed ./udagram-api-feed
+    - name: Build the Docker image
+      run: docker build -t udagram-api-user ./udagram-api-user
+    - name: Build the Docker image
+      run: docker build -t reverseproxy ./udagram-reverseproxy
+    - name: Build the Docker image
+      run: docker tag udagram-frontend ams2000/udagram-frontend:v1
+    - name: Build the Docker image
+      run: docker tag udagram-api-feed ams2000/udagram-api-feed:v1
+    - name: Build the Docker image
+      run: docker tag udagram-api-user ams2000/udagram-api-user:v1
+    - name: Build the Docker image
+      run: docker tag reverseproxy ams2000/reverseproxy:v1
+      
+    - name: logout of docker
+      run: docker logout
+    - name: Login to dockerhub
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+    - name: Push docker image to dockerhub
+      run: docker push ams2000/udagram-frontend:v1
+    - name: Push docker image to dockerhub
+      run: docker push ams2000/udagram-api-feed:v1
+    - name: Push docker image to dockerhub
+      run: docker push ams2000/udagram-api-user:v1
+    - name: Push docker image to dockerhub
+      run: docker push ams2000/reverseproxy:v1
+ 
