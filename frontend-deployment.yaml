@@ -15,10 +15,10 @@ spec:
         app: udagram-frontend
     spec:
       containers:
-      - image: ams2000/udagram-frontend:v3
+      - image: ams2000/udagram-frontend:v4
         name: udagram-frontend  
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         envFrom:
           - configMapRef:
               name: env-configmap

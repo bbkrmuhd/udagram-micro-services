@@ -18,7 +18,7 @@ spec:
       containers:
         - name: reverseproxy
           imagePullPolicy: Always
-          image: ams2000/reverseproxy:v1
+          image: ams2000/reverseproxy:v4
           ports:
             - containerPort: 8080
           resources:

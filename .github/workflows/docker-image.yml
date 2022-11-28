@@ -24,24 +24,24 @@ jobs:
     - name: Build the Docker image reverseproxy
       run: docker build -t reverseproxy ./udagram-reverseproxy
     - name: Tag the Docker image frontend
-      run: docker tag udagram-frontend ams2000/udagram-frontend:v1
+      run: docker tag udagram-frontend ams2000/udagram-frontend:v4
     - name: Tag the Docker image api feed
-      run: docker tag udagram-api-feed ams2000/udagram-api-feed:v1
+      run: docker tag udagram-api-feed ams2000/udagram-api-feed:v4
     - name: Tag the Docker image api user
-      run: docker tag udagram-api-user ams2000/udagram-api-user:v1
+      run: docker tag udagram-api-user ams2000/udagram-api-user:v4
     - name: Tag the Docker image reverseproxy
-      run: docker tag reverseproxy ams2000/reverseproxy:v1
+      run: docker tag reverseproxy ams2000/reverseproxy:v4
       
     - name: logout of docker
       run: docker logout
     - name: Login to dockerhub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Push docker image Frontend to dockerhub
-      run: docker push ams2000/udagram-frontend:v1
+      run: docker push ams2000/udagram-frontend:v4
     - name: Push docker image to api feed dockerhub
-      run: docker push ams2000/udagram-api-feed:v1
+      run: docker push ams2000/udagram-api-feed:v4
     - name: Push docker image to api user dockerhub
-      run: docker push ams2000/udagram-api-user:v1
+      run: docker push ams2000/udagram-api-user:v4
     - name: Push docker image to reverseproxy dockerhub
-      run: docker push ams2000/reverseproxy:v1
+      run: docker push ams2000/reverseproxy:v4
  
